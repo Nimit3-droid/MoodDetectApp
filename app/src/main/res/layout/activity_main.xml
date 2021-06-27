@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:backgroundTint="#8FFFFFFF"
+    android:backgroundTintMode="src_over"
+    android:orientation="vertical"
+    android:padding="50dp"
+    tools:context="com.example.nirajparajuli0.fitnessmonitoring.MainActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp">
+
+        <ImageButton
+            android:id="@+id/start"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:onClick="startAR"
+            android:padding="15dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/start" />
+
+        <ImageButton
+            android:id="@+id/stop"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:onClick="stopAR"
+            android:padding="15dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/stop" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <Button
+            android:id="@+id/viewConfidence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="center"
+            android:onClick="viewTable"
+            android:text="@string/table" />
+
+
+        <Button
+            android:id="@+id/viewStats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+            android:onClick="viewStats"
+            android:text="@string/stats" />
+    </RelativeLayout>
+
+
+</LinearLayout>
