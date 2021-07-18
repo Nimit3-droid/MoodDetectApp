@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/background_light"
     android:orientation="vertical"
-    tools:context="com.example.nirajparajuli0.fitnessmonitoring.DisplayStatsActivity">
+    tools:context="com.example.MoodMonitor.DisplayStatsActivity">
 
 
 <!--    <Spinner-->
@@ -35,6 +35,16 @@
         android:padding="10dp"
         android:text="Total Activity Time"
         android:textSize="18sp" />
+    <TextView
+        android:id="@+id/totalCaloriesBurnt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:layout_marginBottom="5dp"
+        android:background="@android:color/background_light"
+        android:padding="10dp"
+        android:text=""
+        android:textSize="18sp"/>
     <TextView
         android:id="@+id/Jogging"
         android:layout_width="match_parent"
@@ -101,6 +111,7 @@
         android:padding="2dp"
         android:text="Sitting"
         android:textSize="18sp" />
+
     <TextView
         android:id="@+id/CurrentMood"
         android:layout_width="match_parent"
@@ -112,6 +123,7 @@
         android:padding="2dp"
         android:text=""
         android:textSize="18sp" />
+
 
 
 

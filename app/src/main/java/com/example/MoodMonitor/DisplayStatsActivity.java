@@ -1,4 +1,4 @@
-package com.example.nirajparajuli0.fitnessmonitoring;
+package com.example.MoodMonitor;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -22,10 +22,13 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
 import java.lang.ref.WeakReference;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 public class DisplayStatsActivity extends AppCompatActivity implements OnChartValueSelectedListener {
 
@@ -42,8 +45,12 @@ public class DisplayStatsActivity extends AppCompatActivity implements OnChartVa
     private TextView standing;
     private TextView sitting;
     private TextView moodPredicted;
+    private TextView totalCalories;
     public float totalTimeTakenInDb=0.0f;
     public Map<String,Integer> activityTypeWithTime=new HashMap<>();
+    private  double totalCal=0;
+    DecimalFormat df = new DecimalFormat("#.##");
+
 
 
     @Override
@@ -71,18 +78,42 @@ public class DisplayStatsActivity extends AppCompatActivity implements OnChartVa
     }
     public void getTotalTime(float time){
         totalTime= findViewById(R.id.totalActivityTime);
-        moodPredicted=findViewById(R.id.CurrentMood);
-        if(time>180*60){
-            moodPredicted.setText("Mood Predicted - Happy :) ");
-        }else if(time<=180*60 && time >=120*60){
-            moodPredicted.setText("Mood Predicted - Normal :| ");
-        }else if(time<120*60){
-            moodPredicted.setText("Mood Predicted - Sad :( ");
+
+
+        if(time<3600){
+            totalTime.setText("Total Time Doing These Activities : "+Float.toString(time) + " seconds");
         }else{
-            moodPredicted.setText("");
+            totalTime.setText("Total Time Doing These Activities : "+df.format(time/3600) + " Hrs");
         }
 
-        totalTime.setText("Total Time : "+Float.toString(time) + " seconds | " + Float.toString(time/3600) +" hrs");
+
+    }
+    public void totalCaloriesBurnt(Map<String,Integer> map){
+
+        totalCalories= findViewById(R.id.totalCaloriesBurnt);
+        if(map.containsKey("Jogging")){
+            totalCal+=map.get("Jogging")*Constants.JOG;
+        }
+        if(map.containsKey("Walking")){
+            totalCal+=map.get("Walking")*Constants.WALK;
+        }
+        if(map.containsKey("Upstairs")){
+            totalCal+=map.get("Upstairs")*Constants.UPS;
+        }
+        if(map.containsKey("Downstairs")){
+            totalCal+=map.get("Downstairs")*Constants.DOWNS;
+        }
+        if(map.containsKey("Standing")){
+            totalCal+=map.get("Standing")*Constants.STAND;
+        }
+        if(map.containsKey("Sitting")){
+            totalCal+=map.get("Sitting")*Constants.SIT;
+        }
+        if(totalCal>0){
+            totalCalories.setText("Total Calories Burnt : "+df.format(totalCal));
+        }else{
+            totalCalories.setText("No Calories Burnt Till Now");
+        }
 
     }
 
@@ -94,35 +125,87 @@ public class DisplayStatsActivity extends AppCompatActivity implements OnChartVa
         standing=findViewById(R.id.Standing);
         sitting=findViewById(R.id.Sitting);
         if(map.containsKey("Jogging")){
-            jogging.setText("Jogging  :  "+map.get("Jogging") + " Seconds");
+            jogging.setText("Jogging  :  "+df.format(map.get("Jogging")*Constants.JOG) + " Kcal");
         }else{
-            jogging.setText("Jogging  :  "+0 + " Seconds");
+            jogging.setText("Jogging  :  "+0 + " Kcal");
         }
         if(map.containsKey("Walking")){
-            walking.setText("Walking  :  "+map.get("Walking") + " Seconds");
+            walking.setText("Walking  :  "+df.format(map.get("Walking")*Constants.WALK) + " Kcal");
         }else{
-            walking.setText("walking  :  "+0 + " Seconds");
+            walking.setText("walking  :  "+0 + " Kcal");
         }
         if(map.containsKey("Upstairs")){
-            upstairs.setText("Upstairs  :  "+map.get("Upstairs") + " Seconds");
+            upstairs.setText("Upstairs  :  "+df.format(map.get("Upstairs")*Constants.UPS) + " Kcal");
         }else{
-            upstairs.setText("upstairs  :  "+0 + " Seconds");
+            upstairs.setText("upstairs  :  "+0 + " Kcal");
         }
         if(map.containsKey("Downstairs")){
-            downstairs.setText("Downstairs  :  "+map.get("Downstairs") + " Seconds");
+            downstairs.setText("Downstairs  :  "+df.format(map.get("Downstairs")*Constants.DOWNS) + " Kcal");
         }else{
-            downstairs.setText("downstairs  :  "+0 + " Seconds");
+            downstairs.setText("downstairs  :  "+0 + " Kcal");
         }
         if(map.containsKey("Standing")){
-            standing.setText("Standing  :  "+map.get("Standing") + " Seconds");
+            standing.setText("Standing  :  "+df.format(map.get("Standing")*Constants.STAND )+ " Kcal");
         }else{
-            standing.setText("standing  :  "+0 + " Seconds");
+            standing.setText("standing  :  "+0 + " Kcal");
         }
         if(map.containsKey("Sitting")){
-            sitting.setText("Sitting  :  "+map.get("Sitting") + " Seconds");
+            sitting.setText("Sitting  :  "+df.format(map.get("Sitting")*Constants.SIT) + " Kcal");
         }else{
-            sitting.setText("Sitting  :  "+0 + " Seconds");
+            sitting.setText("Sitting  :  "+0 + " Kcal");
         }
+    }
+    void sortByValue(Map<String,Integer> map) {
+        Map<Integer,String> sortedmap =new HashMap<>();
+        List<String> mapKeys = new ArrayList<>(map.keySet());
+        List<Integer> mapValues = new ArrayList<>(map.values());
+        Collections.sort(mapValues);
+        Collections.sort(mapKeys);
+//        for(int i=0;i<map.size();i++){
+//            mapValues.get(i)
+//        }
+    }
+    public void displayMood(){
+        //happy
+//        Map<Integer, String> SortedCalo=new HashMap<>();
+////        float max=Integer.MIN_VALUE;
+////        float min=Integer.MAX_VALUE;
+//        List<String> mapKeys = new ArrayList<>(map.keySet());
+//        List<Integer> mapValues = new ArrayList<>(map.values());
+//        Collections.sort(mapValues);
+//        Collections.sort(mapKeys);
+//        for(int i=0;i<map.size();i++){
+////            SortedCalo.put();
+//        }
+
+
+//        float jog=map.get("Jogging");
+//        float walk=map.get("Walking");
+//        float ups=map.get("Upstairs");
+//        float downs=map.get("Downstairs");
+//        float stand=map.get("Standing");
+//        float sit=map.get("Sitting");
+        moodPredicted=findViewById(R.id.CurrentMood);
+        String currMood="Feels Good";
+        if(totalCal>2500){
+            currMood="Exausted";
+
+        }else if(2100<totalCal && totalCal <=2500){
+            currMood ="Happy";
+        }else if(1800<totalCal && totalCal <=2100){
+            currMood="Sad";
+        }else if(totalCal <=1800){
+            currMood="Boredom";
+        }else{
+            currMood="Depressed";
+        }
+        if(totalCal>100){
+            moodPredicted.setText("Mood Predicted Today : "+currMood);
+        }else{
+            moodPredicted.setText("Do some Physical Work to get your current mood");
+        }
+
+
     }
     private long getInitialTimestamp(String option) {
         long currentTime = System.currentTimeMillis() / Constants.MILLI_TO_SEC;
@@ -247,6 +330,8 @@ public class DisplayStatsActivity extends AppCompatActivity implements OnChartVa
             drawPieChart(activities);
             getTotalTime(totalTimeTakenInDb);
             displayTimeAndActivity(activityTypeWithTime);
+            displayMood();
+            totalCaloriesBurnt(activityTypeWithTime);
         }
     }
 }

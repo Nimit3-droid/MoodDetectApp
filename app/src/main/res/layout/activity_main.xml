@@ -7,14 +7,14 @@
     android:backgroundTintMode="src_over"
     android:orientation="vertical"
     android:padding="50dp"
-    tools:context="com.example.nirajparajuli0.fitnessmonitoring.MainActivity">
+    tools:context="com.example.MoodMonitor.MainActivity">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp">
+        android:padding="50dp"
+        android:layout_marginTop="200dp">
 
         <ImageButton
             android:id="@+id/start"
@@ -41,32 +41,23 @@
             android:src="@drawable/stop" />
     </RelativeLayout>
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        android:padding="40dp" />
 
-        <Button
-            android:id="@+id/viewConfidence"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_gravity="center"
-            android:onClick="viewTable"
-            android:text="@string/table" />
+
 
 
         <Button
             android:id="@+id/viewStats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:onClick="viewStats"
             android:text="@string/stats" />
-    </RelativeLayout>
+
 
 
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.example.nirajparajuli0.fitnessmonitoring;
+package com.example.MoodMonitor;
 
 import android.graphics.Color;
 
@@ -54,4 +54,22 @@ public class Constants {
     public static final String OUTPUT_NODE = "output";
     public static final long[] INPUT_SIZE = {1,1,90,3};
     public static final int OUTPUT_SIZE = 6;
+
+    //moodsClass
+    public static final String HAPPY="happy";
+    public static final String SAD="sad";
+    public static final String DEPRESSES="depressed";
+    public static final String BOREDOM="boredom";
+    public static final String EXHAUSTED="exhausted";
+
+    //calories
+
+    public static final double WALK = 0.0855;
+    public static final double SIT= 0.0111;
+    public static final double JOG = 0.1388;
+    public static final double STAND = 0.0383;
+    public static final double UPS = 0.1744;
+    public static final double DOWNS = 0.1111;
+
+
 }

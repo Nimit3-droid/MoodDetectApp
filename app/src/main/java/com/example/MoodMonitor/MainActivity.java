@@ -1,4 +1,4 @@
-package com.example.nirajparajuli0.fitnessmonitoring;
+package com.example.MoodMonitor;
 
 import android.content.Context;
 import android.content.Intent;
@@ -87,14 +87,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             input_signal.addAll(x); input_signal.addAll(y); input_signal.addAll(z);
             float[] results = activityPrediction.getActivityProb(toFloatArray(input_signal));
 
-            if (confidenceView) {
+//            if (confidenceView) {
 //                walkingTextView.setText(Float.toString(round(results[0], 2)));
 //                joggingTextView.setText(Float.toString(round(results[1], 2)));
 //                sittingTextView.setText(Float.toString(round(results[2], 2)));
 //                standingTextView.setText(Float.toString(round(results[3], 2)));
 //                upstairsTextView.setText(Float.toString(round(results[4], 2)));
 //                downstairsTextView.setText(Float.toString(round(results[5], 2)));
-            }
+//            }
 
             long unixTime = System.currentTimeMillis() / 1000L;
             String[] activity_results = predictedActivity(results);
@@ -102,12 +102,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             int activity_indx = Integer.parseInt(activity_results[0]);
 
             if (results[activity_indx] > 0.7) {
-                if (confidenceView) {
-                    TableLayout tableLayout = (TableLayout) findViewById(R.id.TableConfidence);
-                    int drawableId = getResources().getIdentifier(activity_type.toLowerCase(), "drawable", getPackageName());
-                    Log.d("Converted case ", activity_type);
-                    tableLayout.setBackgroundResource(drawableId);
-                }
+//                if (confidenceView) {
+//                    TableLayout tableLayout = (TableLayout) findViewById(R.id.TableConfidence);
+//                    int drawableId = getResources().getIdentifier(activity_type.toLowerCase(), "drawable", getPackageName());
+//                    Log.d("Converted case ", activity_type);
+//                    tableLayout.setBackgroundResource(drawableId);
+//                }
 
                 activity_duration += 1;
 
@@ -196,8 +196,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         confidenceView = true;
         Log.d("Boolean Value ", Boolean.toString(confidenceView));
 
-        setContentView(R.layout.view_confidence);
-
+//        setContentView(R.layout.view_confidence);
+//
 //        downstairsTextView = (TextView)findViewById(R.id.downstairs_prob);
 //        joggingTextView = (TextView)findViewById(R.id.jogging_prob);
 //        sittingTextView = (TextView)findViewById(R.id.sitting_prob);

@@ -1,4 +1,4 @@
-package com.example.nirajparajuli0.fitnessmonitoring;
+package com.example.MoodMonitor;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
