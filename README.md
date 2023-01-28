@@ -6,7 +6,7 @@ Mood Monitor is an Android application that users can use to track their daily a
     - Registers/unregisters event listener
     - Records readings from the accelerometers
     - Calls RecognitionActivity for prediction and chooses activity with highest confidence score
-    - Inserts predicted activity to a SQLite database in the background
+    - Inserts a predicted activity to a SQLite database in the background
     
 2. RecognitionActivity
     - Initializes trained CNN classifier
